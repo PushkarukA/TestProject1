@@ -46,5 +46,22 @@ namespace TestProject1
             Assert.True(elements.Count > 0);
             driver.FindElement(By.XPath("//a[@class=\"btn btn-link text-danger btn-sidebar sidebar_btn\"]")).Click();
         }
+
+        [Test]
+        public void login2()
+        {
+            driver.Navigate().GoToUrl("https://guest:welcome2qauto@qauto.forstudy.space/");
+            driver.FindElement(By.CssSelector(".btn-outline-white")).Click();
+            driver.FindElement(By.Id("signinEmail")).SendKeys("hillelauto@email.com");
+            driver.FindElement(By.Id("signinPassword")).SendKeys("Hillelauto123");
+            driver.FindElement(By.CssSelector(".btn-primary:nth-child(2)")).Click();
+            {
+                WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(2));
+                wait.Until(driver => driver.FindElements(By.XPath("//a[@class=\"btn btn-link text-danger btn-sidebar sidebar_btn\"]")).Count > 0);
+            }
+            var elements = driver.FindElements(By.XPath("//a[@class=\"btn btn-link text-danger btn-sidebar sidebar_btn\"]"));
+            Assert.True(elements.Count > 0);
+            driver.FindElement(By.XPath("//a[@class=\"btn btn-link text-danger btn-sidebar sidebar_btn\"]")).Click();
+        }
     }
 }
